@@ -5,13 +5,9 @@ services:
     region: frankfurt
     plan: free
     buildCommand: |
-      python3.11 -m venv venv
-      source venv/bin/activate
-      python3.11 -m pip install --upgrade pip
-      python3.11 -m pip install -r requirements.txt
-    startCommand: |
-      source venv/bin/activate
-      gunicorn havadurumudeneme:app  # <--- DEĞİŞİKLİK: app yerine havadurumudeneme
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: gunicorn havadurumudeneme:app
     envVars:
       - key: DATABASE_URL
         value: postgresql://neondb_owner:npg_gOV9pRWXP0KZ@ep-damp-band-adaemlf8-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
@@ -23,5 +19,3 @@ services:
         value: a33a0d8c690e4274ab5356b49247a66b
       - key: OPENROUTER_API_KEY
         value: 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
-      - key: PYTHON_VERSION
-        value: 3.11.0
