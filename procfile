@@ -1,1 +1,1 @@
-web: gunicorn havadurumudeneme:app
+web: python main.py
