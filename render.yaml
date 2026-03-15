@@ -11,7 +11,7 @@ services:
       python3.11 -m pip install -r requirements.txt
     startCommand: |
       source venv/bin/activate
-      gunicorn havadurumudeneme:app --bind 0.0.0.0:$PORT
+      gunicorn havadurumudeneme:app  # <--- DEĞİŞİKLİK: app yerine havadurumudeneme
     envVars:
       - key: DATABASE_URL
         value: postgresql://neondb_owner:npg_gOV9pRWXP0KZ@ep-damp-band-adaemlf8-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
@@ -25,11 +25,3 @@ services:
         value: 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
       - key: PYTHON_VERSION
         value: 3.11.0
-      - key: FLASK_ENV
-        value: production
-    healthCheckPath: /
-    autoDeploy: true
-    disk:
-      name: tmp
-      mountPath: /opt/render/project/src/tmp
-      sizeGB: 1
