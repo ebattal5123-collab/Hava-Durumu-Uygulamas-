@@ -1,25 +1,11 @@
 services:
   - type: web
-    name: 7c-sinif-sohbet
+    name: hava-durumu-uygulamasi
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    startCommand: gunicorn havadurumudeneme:app
     envVars:
+      - key: DATABASE_URL
+        sync: false
       - key: SECRET_KEY
         generateValue: true
-      - key: DATABASE_URL
-        fromDatabase:
-          name: 7c-db
-          property: connectionString
-      - key: ADMIN_SCHOOL_NO
-        value: "90"
-      - key: ADMIN_NAME
-        value: "Muhammet Eymen Battal"
-      - key: ADMIN_PASSWORD
-        value: "Admin90"
-
-databases:
-  - name: 7c-db
-    databaseName: school_chat
-    user: school_user
-    plan: free
