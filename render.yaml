@@ -4,10 +4,8 @@ services:
     runtime: python
     region: frankfurt
     plan: free
-    buildCommand: |
-      pip install --upgrade pip
-      pip install -r requirements.txt
-    startCommand: gunicorn main:app
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app  # veya gerçek dosya adınız
     envVars:
       - key: DATABASE_URL
         value: postgresql://neondb_owner:npg_gOV9pRWXP0KZ@ep-damp-band-adaemlf8-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
